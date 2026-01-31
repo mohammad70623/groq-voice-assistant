@@ -38,3 +38,10 @@ def generate_response(prompt):
         messages=[{"role":"user","content":prompt}]
     )
     return response.choices[0].message.content
+
+
+# TTS playback
+def speak(text):
+    engine = pyttsx3.init()
+    engine.say(text)
+    engine.runAndWait()
