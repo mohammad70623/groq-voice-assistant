@@ -30,3 +30,11 @@ def transcribe(file_path):
             model="whisper-large-v3-turbo"
         )
     return transcription.text
+
+# Generate response using Groq LLM
+def generate_response(prompt):
+    response = client.chat.completions.create(
+        model="llama-3.1-8b-instant",
+        messages=[{"role":"user","content":prompt}]
+    )
+    return response.choices[0].message.content
