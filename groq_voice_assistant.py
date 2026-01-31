@@ -45,3 +45,15 @@ def speak(text):
     engine = pyttsx3.init()
     engine.say(text)
     engine.runAndWait()
+
+
+# Main pipeline
+if __name__ == "__main__":
+    audio_file = record_audio(duration=5)
+    user_text = transcribe(audio_file)
+    print("You said:", user_text)
+    
+    bot_response = generate_response(user_text)
+    print("Bot says:", bot_response)
+    
+    speak(bot_response)
