@@ -21,3 +21,12 @@ def record_audio(duration=5, fs=44100):
     tmp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".wav")
     sf.write(tmp_file.name, recording, fs)
     return tmp_file.name
+
+# STT using Groq
+def transcribe(file_path):
+    with open(file_path, "rb") as f:
+        transcription = client.audio.transcriptions.create(
+            file=f,
+            model="whisper-large-v3-turbo"
+        )
+    return transcription.text
